@@ -1,0 +1,8 @@
+{
+  "name": "article-processor-with-open-ai-api",
+  "version": "1.0.0",
+  "type": "module",
+  "dependencies": {
+    "openai": "^4.72.0"
+  }
+}
