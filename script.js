@@ -6,6 +6,8 @@ import OPENAI_API_KEY from "./environment.js";
 const ARTICLE_RAW_PATH = "./artykul_surowy.txt";
 const ARTICLE_RAW_ENCODING = "utf8";
 
+const ARTICLE_PROCESSED_PATH = "./artykul.html";
+
 const SYSTEM_PROMPT = `
 You are a helpful assistant specializing in converting articles into structured HTML.
 Your task is to transform text articles into well-structured HTML documents, while also suggesting suitable places to include images.
@@ -80,6 +82,20 @@ async function process_article_with_openai(system_prompt, article_content) {
   }
 }
 
+async function write_file(file_path, file_content) {
+  try {
+    console.log(`\nWriting file '${file_path}' in progress...`);
+
+    await fs.writeFile(file_path, file_content);
+    return true;
+  } catch (error) {
+    console.error(
+      `Error writing file: '${file_path}'.\nError: ${error.message}`
+    );
+    return null;
+  }
+}
+
 //main function
 async function main() {
   //reading file logic
@@ -94,6 +110,14 @@ async function main() {
   );
   if (!article_processed) return;
   console.log(`Article was processed successfully.`);
+
+  //writing file logic
+  var article_processed_write_success = await write_file(
+    ARTICLE_PROCESSED_PATH,
+    article_processed
+  );
+  if (!article_processed_write_success) return;
+  console.log(`File '${ARTICLE_PROCESSED_PATH}' was written successfully.`);
 }
 
 //executing main function
