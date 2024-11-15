@@ -3,8 +3,8 @@ import OpenAI from "openai";
 import OPENAI_API_KEY from "./environment.js";
 
 //constants
-const article_raw_path = "./artykul_surowy.txt";
-const article_raw_encoding = "utf8";
+const ARTICLE_RAW_PATH = "./artykul_surowy.txt";
+const ARTICLE_RAW_ENCODING = "utf8";
 
 const SYSTEM_PROMPT = `
 You are a helpful assistant specializing in converting articles into structured HTML.
@@ -25,7 +25,9 @@ Guidelines:
 //functions
 async function read_file(file_path, file_encoding) {
   try {
-    const file_content = await fs.readFile(file_path, file_encoding);
+    console.log(`\nReading file '${file_path}' in progress...`);
+
+    let file_content = await fs.readFile(file_path, file_encoding);
     return file_content;
   } catch (error) {
     console.error(
@@ -81,9 +83,9 @@ async function process_article_with_openai(system_prompt, article_content) {
 //main function
 async function main() {
   //reading file logic
-  const article_raw = await read_file(article_raw_path, article_raw_encoding);
+  var article_raw = await read_file(ARTICLE_RAW_PATH, ARTICLE_RAW_ENCODING);
   if (!article_raw) return;
-  console.log(`File '${article_raw_path}' was read successfully.`);
+  console.log(`File '${ARTICLE_RAW_PATH}' was read successfully.`);
 
   //using Open AI API
   var article_processed = await process_article_with_openai(
