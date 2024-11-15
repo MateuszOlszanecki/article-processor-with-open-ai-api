@@ -15,8 +15,9 @@ Your task is to transform text articles into well-structured HTML documents, whi
 
 Guidelines:
 1. Structure the article using relevant HTML tags (e.g., <h1>, <h2>, <p>, <ul>, <ol>, <li>, <table>, <blockquote>, etc.) to organize the content in a clear and readable format. Divide long sections into smaller parts with <h2> or <h3> as needed.
-2. Identify logical spots in the article where images can enhance the content. For each identified spot, insert an image placeholder with the following format:
-   <img src="image_placeholder.jpg" alt="prompt for image generation">
+2. Identify logical spots in the article where images can enhance the content. There should be at least one image per section.
+   For each identified spot, insert an image placeholder with the following format:
+   <img src="image_placeholder.jpg" alt="Prompt for image generation.">
    The alt text should be written in the same language as the article and describe the visual content that should appear in the image.
    Make sure the alt text describes the image in enough detail that it can be used to generate the image later.
 3. For every image added, include a caption beneath it using the <figcaption> tag. The caption should also be in the same language as the article and describe the image in a way that adds context or explanation.
